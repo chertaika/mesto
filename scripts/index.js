@@ -1,7 +1,7 @@
 let likeButtons = document.querySelectorAll('.elements__like');
 
 likeButtons.forEach(function (btn) {
-  btn.addEventListener('click', function (){
+  btn.addEventListener('click', function () {
     this.classList.toggle('elements__like_active');
   })
 })
@@ -19,7 +19,9 @@ function showModal() {
   nameInput.value = name.textContent;
   profInput.value = prof.textContent;
   modal.classList.add('modal_show');
-  setTimeout(function() { nameInput.focus() }, 30);
+  setTimeout(function () {
+    nameInput.focus()
+  }, 30);
 }
 
 function closeModal() {
