@@ -1,0 +1,27 @@
+.modal__edit-btn {
+  margin-top: 48px;
+  height: 50px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  border-radius: 2px;
+  transition: 0.25s;
+  padding: 0;
+}
+
+.modal__edit-btn:hover {
+  background-color: rgba(0, 0, 0, .8);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .modal__edit-btn {
+    height: 46px;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 45px;
+  }
+}

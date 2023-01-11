@@ -1,169 +1,31 @@
-.body {
-  background-color: #000;
-  margin: 0;
-}
-
-.page {
-  max-width: 1280px;
-  min-width: 320px;
-  font-family: 'Inter', Arial, sans-serif;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  text-rendering: optimizeLegibility;
-  margin: 0 auto;
-}
-
-.header {
-  max-width: 880px;
-  width: 88.125%;
-  margin: 0 auto;
-  padding-bottom: 41px;
-  padding-top: 45px;
-  box-shadow: 0 -1px 0 0 rgba(84, 84, 84, .7) inset;
-}
-
-.header__logo {
-  display: block;
-  width: 142px;
-  height: 33px;
-  object-fit: contain;
-}
-
-@media screen and (max-width: 767px) {
-  .header__logo {
-    margin-left: 8px;
-  }
-}
-
-.content {
-  margin: 0 auto;
-  max-width: 880px;
-  width: 88.125%;
-}
-.profile {
-
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  margin: 0 auto;
-  padding-top: 40px;
-  padding-bottom: 51px;
-}
-
-.profile__avatar {
-  display: block;
-  max-width: 120px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-}
-
-.profile__info {
-  color: #fff;
-  padding-left: 30px;
-  padding-right: 19px;
-}
-
-.profile__name {
-  margin: 0 0 7px;
-  font-size: 42px;
-  font-weight: 500;
-  line-height: 48px;
-}
-
-.profile__desc {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 22px;
-}
-
-.profile__edit-btn {
-  width: 24px;
-  aspect-ratio: 1/1;
-  background-image: url(../images/edit-button.svg);
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 1px solid #fff;
-  align-self: start;
-  margin-top: 37px;
-  padding: 0;
-}
-
-.profile__add-btn {
-  margin-left: auto;
-  width: 150px;
-  height: 50px;
-  background-image: url(../images/add-button.svg);
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 2px solid #fff;
-  border-radius: 2px;
-  padding: 0;
-}
-
-.button-hover {
-  transition: opacity 0.25s;
-  cursor: pointer;
-}
-
-.button-hover:hover {
-  opacity: .6;
-}
-
-.elements {
-  max-width: 880px;
-  display: grid;
-  gap: 20px 17px;
-  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
-}
-
-.elements__photo {
-  width: 100%;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 10px 10px 0 0;
-  display: block;
-}
-
-.elements__desc {
-  border-radius: 0 0 10px 10px;
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 20px 25px 21px;
-}
-
-.elements__title {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 90%;
-  margin: 0;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 29px;
-}
-
-.elements__like {
-  border: none;
-  width: 22px;
-  height: 19px;
-  background-image: url("../images/like.svg");
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 0;
-  transition: opacity 0.25s;
-  cursor: pointer;
-}
-
-.elements__like:hover {
-  opacity: .5;
-}
+@import "../vendor/normalize.css";
+@import "../vendor/fonts/inter.css";
+@import "../blocks/body/body.css";
+@import "../blocks/page/page.css";
+@import "../blocks/haeder/header.css";
+@import "../blocks/haeder/__logo/header__logo.css";
+@import "../blocks/content/content.css";
+@import "../blocks/profile/profile.css";
+@import "../blocks/profile/__avatar/profile__avatar.css";
+@import "../blocks/profile/__info/profile__info.css";
+@import "../blocks/profile/__name/profile__name.css";
+@import "../blocks/profile/__prof/profile__prof.css";
+@import "../blocks/profile/__edit-btn/profile__edit-btn.css";
+@import "../blocks/profile/__add-btn/profile__add-btn.css";
+@import "../blocks/btn-hover/btn-hover.css";
+@import "../blocks/elements/elements.css";
+@import "../blocks/elements/__photo/elements__photo.css";
+@import "../blocks/elements/__desc/elements__desc.css";
+@import "../blocks/elements/__title/elements__title.css";
+@import "../blocks/elements/__like/elements__like.css";
+@import "../blocks/elements/__like/_active/elements__like_active.css";
+@import "../blocks/footer/footer.css";
+@import "../blocks/footer/__copyright/footer__copyright.css";
+@import "../blocks/modal/modal.css";
+@import "../blocks/modal/_show/modal_show.css";
+@import "../blocks/modal/__content/modal__content.css";
+@import "../blocks/modal/__title/modal__title.css";
+@import "../blocks/modal/__form-profile/modal__form-profile.css";
+@import "../blocks/modal/__input/modal__input.css";
+@import "../blocks/modal/__edit-btn/modal__edit-btn.css";
+@import "../blocks/modal/__close-btn/modal__close-btn.css";

@@ -1,0 +1,17 @@
+.modal__content {
+  margin: 195px auto 0;
+  max-width: 430px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 34px 36px 37px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 767px) {
+  .modal__content {
+    max-width: 282px;
+    margin-top: 123px;
+    padding: 26px 22px 25px;
+  }
+}

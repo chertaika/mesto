@@ -1,0 +1,17 @@
+.modal__input {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  min-height: 27px;
+  padding-bottom: 3px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.modal__input:first-of-type {
+  margin-bottom: 25px;
+}
+
+.modal__input:focus {
+  outline: none;
+}
