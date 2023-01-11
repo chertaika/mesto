@@ -18,7 +18,6 @@
 @import "../blocks/card/__desc/card__desc.css";
 @import "../blocks/card/__title/card__title.css";
 @import "../blocks/card/__like/card__like.css";
-@import "../blocks/card/__like/_active/card__like_active.css";
 @import "../blocks/footer/footer.css";
 @import "../blocks/footer/__copyright/footer__copyright.css";
 @import "../blocks/popup/popup.css";
