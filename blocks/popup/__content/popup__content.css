@@ -1,5 +1,4 @@
-.modal__content {
-  margin: 195px auto 0;
+.popup__content {
   max-width: 430px;
   background-color: white;
   border-radius: 10px;
@@ -9,9 +8,8 @@
 }
 
 @media screen and (max-width: 767px) {
-  .modal__content {
+  .popup__content {
     max-width: 282px;
-    margin-top: 123px;
     padding: 26px 22px 25px;
   }
 }

@@ -1,4 +1,4 @@
-.modal__edit-btn {
+.popup__edit-btn {
   margin-top: 48px;
   height: 50px;
   font-weight: 400;
@@ -12,13 +12,13 @@
   padding: 0;
 }
 
-.modal__edit-btn:hover {
+.popup__edit-btn:hover {
   background-color: rgba(0, 0, 0, .8);
   cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {
-  .modal__edit-btn {
+  .popup__edit-btn {
     height: 46px;
     font-size: 14px;
     line-height: 17px;

@@ -18,69 +18,69 @@
         <div class="profile__info">
           <h1 class="profile__name">Фёдор Конюхов</h1>
           <p class="profile__prof">Российский путешественник</p>
-          <button class="profile__edit-btn btn-hover"></button>
+          <button class="profile__edit-btn btn-hover" type="button"></button>
         </div>
-        <button class="profile__add-btn btn-hover"></button>
+        <button class="profile__add-btn btn-hover" type="button"></button>
       </section>
-      <section class="elements">
-        <div>
-          <img src="./images/altay.jpg" class="elements__photo" alt="Гейзерное озеро, Алтай">
-          <div class="elements__desc">
-            <h2 class="elements__title">Гейзерное озеро, Алтай</h2>
-            <button class="elements__like"></button>
+      <section class="elements" aria-label="Впечатляющие места России">
+        <article class="card">
+          <img src="./images/altay.jpg" class="card__photo" alt="Гейзерное озеро, Алтай">
+          <div class="card__desc">
+            <h2 class="card__title">Гейзерное озеро, Алтай</h2>
+            <button class="card__like" type="button"></button>
           </div>
-        </div>
-        <div>
-          <img src="./images/baikal.jpg" class="elements__photo" alt="Остров Ольхон, Байкал">
-          <div class="elements__desc">
-            <h2 class="elements__title">Остров Ольхон</h2>
-            <button class="elements__like"></button>
+        </article>
+        <article class="card">
+          <img src="./images/baikal.jpg" class="card__photo" alt="Остров Ольхон, Байкал">
+          <div class="card__desc">
+            <h2 class="card__title">Остров Ольхон</h2>
+            <button class="card__like" type="button"></button>
           </div>
-        </div>
-        <div>
-          <img src="./images/fisht.jpg" class="elements__photo" alt="Гора Фишт, Кавказ">
-          <div class="elements__desc">
-            <h2 class="elements__title">Гора Фишт</h2>
-            <button class="elements__like"></button>
+        </article>
+        <article class="card">
+          <img src="./images/fisht.jpg" class="card__photo" alt="Гора Фишт, Кавказ">
+          <div class="card__desc">
+            <h2 class="card__title">Гора Фишт</h2>
+            <button class="card__like" type="button"></button>
           </div>
-        </div>
-        <div>
-          <img src="./images/fiolent.jpg" class="elements__photo" alt="Мыс Фиолент, Крым">
-          <div class="elements__desc">
-            <h2 class="elements__title">Мыс Фиолент</h2>
-            <button class="elements__like"></button>
+        </article>
+        <article class="card">
+          <img src="./images/fiolent.jpg" class="card__photo" alt="Мыс Фиолент, Крым">
+          <div class="card__desc">
+            <h2 class="card__title">Мыс Фиолент</h2>
+            <button class="card__like" type="button"></button>
           </div>
-        </div>
-        <div>
-          <img src="./images/kamchatka.jpg" class="elements__photo" alt="Корякский вулкан, Камчатка">
-          <div class="elements__desc">
-            <h2 class="elements__title">Корякский вулкан</h2>
-            <button class="elements__like"></button>
+        </article>
+        <article class="card">
+          <img src="./images/kamchatka.jpg" class="card__photo" alt="Корякский вулкан, Камчатка">
+          <div class="card__desc">
+            <h2 class="card__title">Корякский вулкан</h2>
+            <button class="card__like" type="button"></button>
           </div>
-        </div>
-        <div>
-          <img src="./images/kezenoy-am.jpg" class="elements__photo" alt="Озеро Кезеной-Ам, Чечня">
-          <div class="elements__desc">
-            <h2 class="elements__title">Озеро Кезеной-Ам</h2>
-            <button class="elements__like"></button>
+        </article>
+        <article class="card">
+          <img src="./images/kezenoy-am.jpg" class="card__photo" alt="Озеро Кезеной-Ам, Чечня">
+          <div class="card__desc">
+            <h2 class="card__title">Озеро Кезеной-Ам</h2>
+            <button class="card__like" type="button"></button>
           </div>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
-    <div class="modal">
-      <div class="modal__content">
-        <h2 class="modal__title">Редактировать профиль</h2>
-        <form class="modal__form-profile">
-          <input type="text" placeholder="Имя" class="modal__input modal__input_type_name">
-          <input type="text" placeholder="Профессия" class="modal__input modal__input_type_prof">
-          <button class="modal__edit-btn">
+    <div class="popup">
+      <div class="popup__content">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form-profile" name="profile">
+          <input type="text" placeholder="Имя" class="popup__input popup__input_type_name" name="name">
+          <input type="text" placeholder="Профессия" class="popup__input popup__input_type_prof" name="prof">
+          <button class="popup__edit-btn" type="submit">
             Сохранить
           </button>
         </form>
-        <button class="modal__close-btn btn-hover"></button>
+        <button class="popup__close-btn btn-hover" type="button"></button>
       </div>
     </div>
   </div>

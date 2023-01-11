@@ -1,4 +1,4 @@
-.modal {
+.popup {
   width: 100%;
   min-height: 100%;
   background-color: rgba(0, 0, 0, .5);
@@ -8,4 +8,7 @@
   visibility: hidden;
   opacity: 0;
   transition: opacity .25s, visibility .25s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
