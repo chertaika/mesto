@@ -7,7 +7,7 @@
   left: 0;
   visibility: hidden;
   opacity: 0;
-  transition: opacity .6s, visibility .6s;
+  transition: opacity .25s linear, visibility .25s linear;
   display: flex;
   justify-content: center;
   align-items: center;
