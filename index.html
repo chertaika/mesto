@@ -42,18 +42,21 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form popup__form_profile" name="profile" novalidate>
         <label class="popup__field">
-          <input type="text" placeholder="Имя" id="name-input" minlength="2" maxlength="40" class="popup__input popup__input_type_name" name="name" autocomplete="off" required>
+          <input type="text" placeholder="Имя" id="name-input" minlength="2" maxlength="40"
+                 class="popup__input popup__input_type_name" name="name" autocomplete="off" required>
           <span class="popup__input-error name-input-error"></span>
         </label>
         <label class="popup__field">
-          <input type="text" placeholder="О себе" id="desc-input" minlength="2" maxlength="200" class="popup__input popup__input_type_desc" name="desc" autocomplete="off" required>
+          <input type="text" placeholder="О себе" id="desc-input" minlength="2" maxlength="200"
+                 class="popup__input popup__input_type_desc" name="desc" autocomplete="off" required>
           <span class="popup__input-error desc-input-error"></span>
         </label>
         <button class="popup__submit-btn" type="submit">
           Сохранить
         </button>
       </form>
-      <button class="popup__close-btn btn-hover popup__close-btn_type_profile" type="button" aria-label="Закрыть всплывающее окно"></button>
+      <button class="popup__close-btn btn-hover popup__close-btn_type_profile" type="button"
+              aria-label="Закрыть всплывающее окно"></button>
     </div>
   </div>
   <div class="popup popup_type_adding-card">
@@ -61,11 +64,13 @@
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form popup__form_card" name="card" novalidate>
         <label class="popup__field">
-          <input type="text" placeholder="Название" id="title-input" class="popup__input popup__input_type_title" name="title" autocomplete="off" required>
+          <input type="text" placeholder="Название" id="title-input" minlength="2" maxlength="30"
+                 class="popup__input popup__input_type_title" name="title" autocomplete="off" required>
           <span class="popup__input-error title-input-error"></span>
         </label>
         <label class="popup__field">
-          <input type="url" placeholder="Ссылка на картинку" id="link-input" class="popup__input popup__input_type_link" name="link" autocomplete="off" required>
+          <input type="url" placeholder="Ссылка на картинку" id="link-input" class="popup__input popup__input_type_link"
+                 name="link" autocomplete="off" required>
           <span class="popup__input-error link-input-error"></span>
         </label>
         <button class="popup__submit-btn" type="submit">
@@ -78,7 +83,8 @@
   </div>
   <div class="popup popup_type_photo-viewer">
     <div class="popup__content">
-      <button class="popup__close-btn btn-hover popup__close-btn_type_photo-viewer" type="button" aria-label="Закрыть всплывающее окно"></button>
+      <button class="popup__close-btn btn-hover popup__close-btn_type_photo-viewer" type="button"
+              aria-label="Закрыть всплывающее окно"></button>
       <img class="popup__image">
       <h2 class="popup__image-title"></h2>
     </div>

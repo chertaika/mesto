@@ -1,18 +1,18 @@
 const handleEscClose = (evt) => {
-  const popupOpened = document.querySelector('.popup_opened')
+  const currentPopup = document.querySelector('.popup_opened');
   if(evt.key === 'Escape') {
-    closePopup(popupOpened);
+    closePopup(currentPopup);
   }
 };
 
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
-  popup.addEventListener('keydown', handleEscClose);
+  document.addEventListener('keydown', handleEscClose);
 };
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
-  popup.removeEventListener('keydown', handleEscClose);
+  document.removeEventListener('keydown', handleEscClose);
 };
 
 popups.forEach((popup) => {
@@ -72,7 +72,6 @@ initialCards.forEach(element => {
 });
 
 const handleSaveCard = (evt) => {
-  evt.preventDefault();
   const card = {
     name: formCard.title.value,
     link: formCard.link.value
@@ -83,20 +82,19 @@ const handleSaveCard = (evt) => {
 };
 
 const handleEditProfile = () => {
-  nameInput.value = name.textContent;
-  descriptionInput.value = description.textContent;
+  formProfile.name.value = name.textContent;
+  formProfile.desc.value = description.textContent;
   openPopup(popupProfile);
-  nameInput.dispatchEvent(new Event('input'));
-  descriptionInput.dispatchEvent(new Event('input'));
+  formProfile.name.dispatchEvent(new Event('input'));
+  formProfile.desc.dispatchEvent(new Event('input'));
   setTimeout(() => {
-    nameInput.focus();
+    formProfile.name.focus();
   }, 400);
 };
 
-const handleSaveProfile = (evt) => {
-  evt.preventDefault();
-  name.textContent = nameInput.value;
-  description.textContent = descriptionInput.value;
+const handleSaveProfile = () => {
+  name.textContent = formProfile.name.value;
+  description.textContent = formProfile.desc.value;
   closePopup(popupProfile);
 };
 
