@@ -1,4 +1,4 @@
-.profile__prof {
+.profile__desc {
   margin: 0;
   font-size: 18px;
   font-weight: 400;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .profile__prof {
+  .profile__desc {
     font-size: 14px;
     line-height: 17px;
   }
