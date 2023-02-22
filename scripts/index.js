@@ -83,7 +83,7 @@ const handleSaveCard = (evt) => {
 const handleEditProfile = () => {
   formProfile.name.value = nameProfile.textContent;
   formProfile.desc.value = descriptionProfile.textContent;
-  enableValidation(popupProfile, validationOptions);
+  resetValidation(formProfile, validationOptions);
   openPopup(popupProfile);
   setTimeout(() => {
     formProfile.name.focus();
@@ -101,6 +101,6 @@ buttonEditProfile.addEventListener('click', handleEditProfile);
 formProfile.addEventListener('submit', handleSaveProfile);
 formCard.addEventListener('submit', handleSaveCard);
 buttonAddCard.addEventListener('click', () => {
-  enableValidation(popupAddingCard, validationOptions);
+  resetValidation(formCard, validationOptions);
   openPopup(popupAddingCard);
 });

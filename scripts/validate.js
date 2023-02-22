@@ -36,19 +36,20 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
   }
 };
 
-const resetValidation = (formElement, inputList, buttonElement, inactiveButtonClass, {inputErrorClass, errorClass}) => {
+const resetValidation = (formElement, {inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass}) => {
+  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+  const buttonElement = formElement.querySelector(submitButtonSelector);
+
   toggleButtonState(inputList, buttonElement, inactiveButtonClass);
 
   inputList.forEach((inputElement) => {
     hideInputError(formElement, inputElement, inputErrorClass, errorClass);
   });
-}
+};
 
 const setEventListeners = (formElement, {inputSelector, submitButtonSelector, inactiveButtonClass, ...rest}) => {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   const buttonElement = formElement.querySelector(submitButtonSelector);
-
-  resetValidation(formElement, inputList, buttonElement, inactiveButtonClass, rest);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
@@ -58,7 +59,12 @@ const setEventListeners = (formElement, {inputSelector, submitButtonSelector, in
   });
 };
 
-const enableValidation = (popup, {formSelector, ...rest}) => {
-  const formElement = popup.querySelector(formSelector);
-  setEventListeners(formElement, rest);
+const enableValidation = ({formSelector, ...rest}) => {
+  const formList = Array.from(document.querySelectorAll(formSelector));
+
+  formList.forEach((formElement) => {
+    setEventListeners(formElement, rest);
+  });
 };
+
+enableValidation(validationOptions);
