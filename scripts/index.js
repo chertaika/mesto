@@ -1,6 +1,6 @@
 const handleEscClose = (evt) => {
-  const currentPopup = document.querySelector('.popup_opened');
   if(evt.key === 'Escape') {
+    const currentPopup = document.querySelector('.popup_opened');
     closePopup(currentPopup);
   }
 };
@@ -19,59 +19,58 @@ popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target === evt.currentTarget) {
       closePopup(popup);
-    }
-    if (evt.target.classList.contains('popup__close-btn')) {
+    } else if (evt.target.classList.contains('popup__close-btn')) {
       closePopup(popup);
     }
   });
 });
 
-const toggleLike = (evt) => {
-  evt.target.classList.toggle('card__like_active');
+const handleToggleLike = (buttonLike) => {
+  buttonLike.classList.toggle('card__like_active');
 };
 
-const deleteCard = (evt) => {
-  const card = evt.target.closest('.card');
-  card.classList.add('card_removing');
+const handleDeleteCard = (cardElement) => {
+  cardElement.classList.add('card_removing');
   setTimeout(() => {
-    card.remove();
+    cardElement.remove();
   }, 300);
 };
 
-const handleImageViewer = (evt) => {
-  popupImage.src = evt.target.src;
-  popupImage.alt = evt.target.alt;
-  popupImageTitle.textContent = evt.target.alt;
+const handleImageViewer = (cardPhoto) => {
+  popupImage.src = cardPhoto.src;
+  popupImage.alt = cardPhoto.alt;
+  popupImageTitle.textContent = cardPhoto.alt;
   openPopup(popupPhotoViewer);
 };
 
-const createCard = (element) => {
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true),
+const createCard = (cardData) => {
+  const cardElement = card.cloneNode(true),
         cardTitle = cardElement.querySelector('.card__title'),
         cardPhoto = cardElement.querySelector('.card__photo'),
-        likeButton = cardElement.querySelector('.card__like'),
-        deleteButton = cardElement.querySelector('.card__delete-btn');
+        buttonLike = cardElement.querySelector('.card__like'),
+        buttonDelete = cardElement.querySelector('.card__delete-btn');
 
-  cardTitle.textContent = element.name;
-  cardPhoto.src = element.link;
-  cardPhoto.alt = element.name;
-  likeButton.addEventListener('click', toggleLike);
-  deleteButton.addEventListener('click', deleteCard);
-  cardPhoto.addEventListener('click', handleImageViewer);
+  cardTitle.textContent = cardData.name;
+  cardPhoto.src = cardData.link;
+  cardPhoto.alt = cardData.name;
+  buttonLike.addEventListener('click', () => {handleToggleLike(buttonLike)});
+  buttonDelete.addEventListener('click', () => {handleDeleteCard(cardElement)});
+  cardPhoto.addEventListener('click', () => {handleImageViewer(cardPhoto)});
 
   return cardElement;
 };
 
-const renderCard = (element) => {
-  const cardElement = createCard(element);
+const renderCard = (cardData) => {
+  const cardElement = createCard(cardData);
   cardsContainer.prepend(cardElement);
 };
 
-initialCards.forEach(element => {
-  renderCard(element);
+initialCards.forEach(card => {
+  renderCard(card);
 });
 
 const handleSaveCard = (evt) => {
+  evt.preventDefault();
   const card = {
     name: formCard.title.value,
     link: formCard.link.value
@@ -82,25 +81,26 @@ const handleSaveCard = (evt) => {
 };
 
 const handleEditProfile = () => {
-  formProfile.name.value = name.textContent;
-  formProfile.desc.value = description.textContent;
+  formProfile.name.value = nameProfile.textContent;
+  formProfile.desc.value = descriptionProfile.textContent;
+  enableValidation(popupProfile, validationOptions);
   openPopup(popupProfile);
-  formProfile.name.dispatchEvent(new Event('input'));
-  formProfile.desc.dispatchEvent(new Event('input'));
   setTimeout(() => {
     formProfile.name.focus();
   }, 400);
 };
 
-const handleSaveProfile = () => {
-  name.textContent = formProfile.name.value;
-  description.textContent = formProfile.desc.value;
+const handleSaveProfile = (evt) => {
+  evt.preventDefault();
+  nameProfile.textContent = formProfile.name.value;
+  descriptionProfile.textContent = formProfile.desc.value;
   closePopup(popupProfile);
 };
 
-editButton.addEventListener('click', handleEditProfile);
+buttonEditProfile.addEventListener('click', handleEditProfile);
 formProfile.addEventListener('submit', handleSaveProfile);
 formCard.addEventListener('submit', handleSaveCard);
-addingCardButton.addEventListener('click', () => {
+buttonAddCard.addEventListener('click', () => {
+  enableValidation(popupAddingCard, validationOptions);
   openPopup(popupAddingCard);
 });
