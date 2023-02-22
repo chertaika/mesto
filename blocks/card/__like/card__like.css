@@ -7,7 +7,7 @@
   background-position: center;
   background-repeat: no-repeat;
   padding: 0;
-  transition: opacity 0.25s;
+  transition: opacity .25s, background .25s;
   cursor: pointer;
 }
 
