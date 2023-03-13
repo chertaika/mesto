@@ -1,21 +1,15 @@
 export class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleOpenImageViewer) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleOpenImageViewer = handleOpenImageViewer;
   }
 
   _getTemplate = () => {
     return this._templateSelector
       .querySelector('.card')
       .cloneNode(true);
-  }
-
-  _handleOpenImageViewer = () => {
-    popupImage.src = this._link;
-    popupImage.alt = this._name;
-    popupImageTitle.textContent = this._name;
-    popupPhotoViewer.classList.add('popup_opened');
   }
 
   _handleToggleLike = () => {
@@ -27,6 +21,18 @@ export class Card {
     setTimeout(() => {
       this._card.remove();
     }, 300);
+  };
+
+  _setEventListeners = () => {
+    this.cardPhoto.addEventListener('click', () => {
+      this._handleOpenImageViewer(this.cardPhoto);
+    });
+    this.buttonLike.addEventListener('click', () => {
+      this._handleToggleLike();
+    });
+    this.buttonDelete.addEventListener('click', () => {
+      this._handleDeleteCard();
+    });
   };
 
   generateCard = () => {
@@ -42,17 +48,5 @@ export class Card {
     this.cardTitle.textContent = this._name;
 
     return this._card;
-  };
-
-  _setEventListeners = () => {
-    this.cardPhoto.addEventListener('click', () => {
-      this._handleOpenImageViewer();
-    });
-    this.buttonLike.addEventListener('click', () => {
-      this._handleToggleLike();
-    });
-    this.buttonDelete.addEventListener('click', () => {
-      this._handleDeleteCard();
-    });
   };
 }

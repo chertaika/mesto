@@ -27,24 +27,35 @@ popups.forEach((popup) => {
   });
 });
 
+const handleImageViewer = (cardPhoto) => {
+  popupImage.src = cardPhoto.src;
+  popupImage.alt = cardPhoto.alt;
+  popupImageTitle.textContent = cardPhoto.alt;
+  openPopup(popupPhotoViewer);
+};
+
+
+const createCard = (cardData) => {
+  const card = new Card(cardData, cardTemplate, handleImageViewer);
+  return card.generateCard();
+};
+
 const renderCard = (cardData) => {
-  const cardElement = cardData.generateCard();
+  const cardElement = createCard(cardData);
   cardsContainer.prepend(cardElement);
 };
 
-initialCards.forEach(item => {
-  const card = new Card(item, cardTemplate);
-  renderCard(card);
+initialCards.forEach(cardData => {
+  renderCard(cardData);
 })
 
 const handleSaveCard = (evt) => {
   evt.preventDefault();
-  const data = {
+  const cardData = {
     name: formCard.title.value,
     link: formCard.link.value
   };
-  const card = new Card(data, cardTemplate);
-  renderCard(card);
+  renderCard(cardData);
   closePopup(popupAddingCard);
   evt.target.reset();
 };
