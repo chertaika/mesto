@@ -1,13 +1,26 @@
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
-
-// forms.forEach(form => {
-//   const formElement = new FormValidator(validationOptions, form);
-//   formElement.enableValidation();
-// })
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
+import {
+  popups,
+  popupProfile,
+  popupAddingCard,
+  popupPhotoViewer,
+  buttonEditProfile,
+  buttonAddCard,
+  formProfile,
+  nameProfile,
+  descriptionProfile,
+  popupImage,
+  popupImageTitle,
+  cardsContainer,
+  formAddCard,
+  cardTemplate,
+  initialCards,
+  validationOptions
+} from "./constants.js";
 
 const handleEscClose = (evt) => {
-  if(evt.key === 'Escape') {
+  if (evt.key === 'Escape') {
     const currentPopup = document.querySelector('.popup_opened');
     closePopup(currentPopup);
   }
@@ -53,38 +66,31 @@ const renderCard = (cardData) => {
 
 initialCards.forEach(cardData => {
   renderCard(cardData);
-})
+});
+
+const formProfileValidator = new FormValidator(validationOptions, formProfile);
+formProfileValidator.enableValidation();
+const formAddCardValidator = new FormValidator(validationOptions, formAddCard);
+formAddCardValidator.enableValidation();
 
 const handleSaveCard = (evt) => {
-  evt.preventDefault();
   const cardData = {
-    name: formCard.title.value,
-    link: formCard.link.value
+    name: formAddCard.title.value,
+    link: formAddCard.link.value
   };
   renderCard(cardData);
   closePopup(popupAddingCard);
   evt.target.reset();
 };
 
-const createFormValidator = (formElement) => {
-  const validatorElement = new FormValidator(validationOptions, formElement);
-  validatorElement.enableValidation();
-  return validatorElement;
-}
-
 const handleEditProfile = () => {
   formProfile.name.value = nameProfile.textContent;
   formProfile.desc.value = descriptionProfile.textContent;
-  const form = createFormValidator(formProfile);
-  form.resetValidation();
+  formProfileValidator.resetValidation();
   openPopup(popupProfile);
-  setTimeout(() => {
-    formProfile.name.focus();
-  }, 400);
 };
 
-const handleSaveProfile = (evt) => {
-  evt.preventDefault();
+const handleSaveProfile = () => {
   nameProfile.textContent = formProfile.name.value;
   descriptionProfile.textContent = formProfile.desc.value;
   closePopup(popupProfile);
@@ -92,9 +98,8 @@ const handleSaveProfile = (evt) => {
 
 buttonEditProfile.addEventListener('click', handleEditProfile);
 formProfile.addEventListener('submit', handleSaveProfile);
-formCard.addEventListener('submit', handleSaveCard);
+formAddCard.addEventListener('submit', handleSaveCard);
 buttonAddCard.addEventListener('click', () => {
-  const form = createFormValidator(formCard);
-  form.resetValidation();
+  formAddCardValidator.resetValidation();
   openPopup(popupAddingCard);
 });
