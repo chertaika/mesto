@@ -1,4 +1,5 @@
 const popups = document.querySelectorAll('.popup'),
+      forms = Array.from(document.forms),
       popupProfile = document.querySelector('.popup_type_profile'),
       popupAddingCard = document.querySelector('.popup_type_adding-card'),
       popupPhotoViewer = document.querySelector('.popup_type_photo-viewer'),
@@ -37,12 +38,20 @@ const popups = document.querySelectorAll('.popup'),
           name: 'Озеро Кезеной-Ам, Чечня',
           link: 'https://i.ibb.co/v16Jhcz/kezenoy-am.jpg'
         }
-      ],
-      validationOptions = {
-        formSelector: '.popup__form',
-        inputSelector: '.popup__input',
-        submitButtonSelector: '.popup__submit-btn',
-        inactiveButtonClass: 'popup__submit-btn_disabled',
-        inputErrorClass: 'popup__input_type_error',
-        errorClass: 'popup__input-error_visible'
-      };
+      ];
+      // validationOptions = {
+      //   formSelector: '.popup__form',
+      //   inputSelector: '.popup__input',
+      //   submitButtonSelector: '.popup__submit-btn',
+      //   inactiveButtonClass: 'popup__submit-btn_disabled',
+      //   inputErrorClass: 'popup__input_type_error',
+      //   errorClass: 'popup__input-error_visible'
+      // };
+
+const validationOptions = {
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-btn',
+  inactiveButtonClass: 'popup__submit-btn_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_visible'
+};

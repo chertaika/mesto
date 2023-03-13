@@ -1,4 +1,10 @@
 import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
+// forms.forEach(form => {
+//   const formElement = new FormValidator(validationOptions, form);
+//   formElement.enableValidation();
+// })
 
 const handleEscClose = (evt) => {
   if(evt.key === 'Escape') {
@@ -60,10 +66,17 @@ const handleSaveCard = (evt) => {
   evt.target.reset();
 };
 
+const createFormValidator = (formElement) => {
+  const validatorElement = new FormValidator(validationOptions, formElement);
+  validatorElement.enableValidation();
+  return validatorElement;
+}
+
 const handleEditProfile = () => {
   formProfile.name.value = nameProfile.textContent;
   formProfile.desc.value = descriptionProfile.textContent;
-  resetValidation(formProfile, validationOptions);
+  const form = createFormValidator(formProfile);
+  form.resetValidation();
   openPopup(popupProfile);
   setTimeout(() => {
     formProfile.name.focus();
@@ -81,6 +94,7 @@ buttonEditProfile.addEventListener('click', handleEditProfile);
 formProfile.addEventListener('submit', handleSaveProfile);
 formCard.addEventListener('submit', handleSaveCard);
 buttonAddCard.addEventListener('click', () => {
-  resetValidation(formCard, validationOptions);
+  const form = createFormValidator(formCard);
+  form.resetValidation();
   openPopup(popupAddingCard);
 });
