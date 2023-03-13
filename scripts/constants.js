@@ -12,7 +12,6 @@ const popups = document.querySelectorAll('.popup'),
       cardsContainer = document.querySelector('.elements'),
       formCard = document.querySelector('.popup__form_card'),
       cardTemplate = document.querySelector('#card').content,
-      card = cardTemplate.querySelector('.card'),
       initialCards = [
         {
           name: 'Гейзерное озеро, Алтай',

@@ -1,3 +1,5 @@
+import { Card } from './Card.js';
+
 const handleEscClose = (evt) => {
   if(evt.key === 'Escape') {
     const currentPopup = document.querySelector('.popup_opened');
@@ -25,56 +27,23 @@ popups.forEach((popup) => {
   });
 });
 
-const handleToggleLike = (buttonLike) => {
-  buttonLike.classList.toggle('card__like_active');
-};
-
-const handleDeleteCard = (cardElement) => {
-  cardElement.classList.add('card_removing');
-  setTimeout(() => {
-    cardElement.remove();
-  }, 300);
-};
-
-const handleImageViewer = (cardPhoto) => {
-  popupImage.src = cardPhoto.src;
-  popupImage.alt = cardPhoto.alt;
-  popupImageTitle.textContent = cardPhoto.alt;
-  openPopup(popupPhotoViewer);
-};
-
-const createCard = (cardData) => {
-  const cardElement = card.cloneNode(true),
-        cardTitle = cardElement.querySelector('.card__title'),
-        cardPhoto = cardElement.querySelector('.card__photo'),
-        buttonLike = cardElement.querySelector('.card__like'),
-        buttonDelete = cardElement.querySelector('.card__delete-btn');
-
-  cardTitle.textContent = cardData.name;
-  cardPhoto.src = cardData.link;
-  cardPhoto.alt = cardData.name;
-  buttonLike.addEventListener('click', () => {handleToggleLike(buttonLike)});
-  buttonDelete.addEventListener('click', () => {handleDeleteCard(cardElement)});
-  cardPhoto.addEventListener('click', () => {handleImageViewer(cardPhoto)});
-
-  return cardElement;
-};
-
 const renderCard = (cardData) => {
-  const cardElement = createCard(cardData);
+  const cardElement = cardData.generateCard();
   cardsContainer.prepend(cardElement);
 };
 
-initialCards.forEach(card => {
+initialCards.forEach(item => {
+  const card = new Card(item, cardTemplate);
   renderCard(card);
-});
+})
 
 const handleSaveCard = (evt) => {
   evt.preventDefault();
-  const card = {
+  const data = {
     name: formCard.title.value,
     link: formCard.link.value
   };
+  const card = new Card(data, cardTemplate);
   renderCard(card);
   closePopup(popupAddingCard);
   evt.target.reset();

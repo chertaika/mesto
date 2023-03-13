@@ -22,16 +22,6 @@
       <button class="profile__add-btn btn-hover" type="button" aria-label="Добавить карточку"></button>
     </section>
     <section class="elements" aria-label="Впечатляющие места России">
-      <template id="card">
-        <article class="card">
-          <img class="card__photo">
-          <button class="card__delete-btn btn-hover" type="button" aria-label="Удалить карточку"></button>
-          <div class="card__desc">
-            <h2 class="card__title"></h2>
-            <button class="card__like" type="button" aria-label="Поставить лайк"></button>
-          </div>
-        </article>
-      </template>
     </section>
   </main>
   <footer class="footer">
@@ -89,8 +79,18 @@
       <h2 class="popup__image-title"></h2>
     </div>
   </div>
+  <template id="card">
+    <article class="card">
+      <img class="card__photo">
+      <button class="card__delete-btn btn-hover" type="button" aria-label="Удалить карточку"></button>
+      <div class="card__desc">
+        <h2 class="card__title"></h2>
+        <button class="card__like" type="button" aria-label="Поставить лайк"></button>
+      </div>
+    </article>
+  </template>
   <script src="./scripts/constants.js" defer></script>
   <script src="./scripts/validate.js" defer></script>
-  <script src="./scripts/index.js" defer></script>
+  <script type="module" src="./scripts/index.js" defer></script>
 </body>
 </html>
