@@ -20,7 +20,7 @@ export class Card {
     this._card.classList.add('card_removing');
     setTimeout(() => {
       this._card.remove();
-    }, 300);
+    }, 400);
   };
 
   _setEventListeners = () => {
