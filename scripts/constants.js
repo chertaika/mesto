@@ -39,4 +39,8 @@ export const popupProfileSelector = '.popup_type_profile',
         inactiveButtonClass: 'popup__submit-btn_disabled',
         inputErrorClass: 'popup__input_type_error',
         errorClass: 'popup__input-error_visible'
+      },
+      profileInfo = {
+        nameSelector: '.profile__name',
+        descriptionSelector: '.profile__desc',
       };

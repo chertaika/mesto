@@ -1,9 +1,9 @@
-import Card from '../components/Card.js';
-import FormValidator from '../components/FormValidator.js';
-import Section from '../components/Section.js';
-import PopupWithImage from '../components/PopupWithImage.js';
-import PopupWithForm from '../components/PopupWithForm.js';
-import UserInfo from '../components/UserInfo.js';
+import Card from './components/Card.js';
+import FormValidator from './components/FormValidator.js';
+import Section from './components/Section.js';
+import PopupWithImage from './components/PopupWithImage.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import UserInfo from './components/UserInfo.js';
 import {
   popupProfileSelector,
   popupAddingCardSelector,
@@ -15,10 +15,11 @@ import {
   formAddCard,
   cardTemplate,
   initialCards,
-  validationOptions
+  validationOptions,
+  profileInfo
 } from './constants.js';
 
-const userInfo = new UserInfo({nameSelector: '.profile__name', descriptionSelector:'.profile__desc'});
+const userInfo = new UserInfo(profileInfo);
 
 const handleSaveCard = (data) => {
   renderCard(data);
@@ -26,8 +27,9 @@ const handleSaveCard = (data) => {
 };
 
 const handleEditProfile = () => {
-  formProfile.name.value = userInfo.getUserInfo().name;
-  formProfile.description.value = userInfo.getUserInfo().description;
+  const {name, description} = userInfo.getUserInfo()
+  formProfile.name.value = name;
+  formProfile.description.value = description;
   formProfileValidator.resetValidation();
   popupEditProfile.open();
 };
