@@ -1,17 +1,21 @@
-import {descriptionProfile, nameProfile} from "../scripts/constants";
 
 export default class UserInfo {
-  constructor({name, description}) {
-    this._name = name;
-    this._description = description;
+  constructor({nameSelector, descriptionSelector}) {
+    this._name = document.querySelector(nameSelector);
+    this._description = document.querySelector(descriptionSelector)
   }
 
   getUserInfo() {
-
+    this._userInfo = {};
+    this._userInfo['name'] = this._name.textContent;
+    this._userInfo['description'] = this._description.textContent;
+    return this._userInfo;
   }
 
-  setUserInfo() {
-    nameProfile.textContent = this._name;
-    descriptionProfile.textContent = this._description;
+  setUserInfo(data) {
+    this._name.textContent = data.name;
+    this._description.textContent = data.description;
   }
 }
+
+

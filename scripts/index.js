@@ -3,6 +3,7 @@ import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
 import {
   popupProfileSelector,
   popupAddingCardSelector,
@@ -10,8 +11,6 @@ import {
   buttonEditProfile,
   buttonAddCard,
   formProfile,
-  nameProfile,
-  descriptionProfile,
   cardsContainerSelector,
   formAddCard,
   cardTemplate,
@@ -19,6 +18,7 @@ import {
   validationOptions
 } from './constants.js';
 
+const userInfo = new UserInfo({nameSelector: '.profile__name', descriptionSelector:'.profile__desc'});
 
 const handleSaveCard = (data) => {
   renderCard(data);
@@ -26,15 +26,14 @@ const handleSaveCard = (data) => {
 };
 
 const handleEditProfile = () => {
-  formProfile.name.value = nameProfile.textContent;
-  formProfile.description.value = descriptionProfile.textContent;
+  formProfile.name.value = userInfo.getUserInfo().name;
+  formProfile.description.value = userInfo.getUserInfo().description;
   formProfileValidator.resetValidation();
   popupEditProfile.open();
 };
 
 const handleSaveProfile = (data) => {
-  nameProfile.textContent = data.name;
-  descriptionProfile.textContent = data.description;
+  userInfo.setUserInfo(data);
   popupEditProfile.close();
 };
 
@@ -67,7 +66,6 @@ const formAddCardValidator = new FormValidator(validationOptions, formAddCard);
 formAddCardValidator.enableValidation();
 
 buttonEditProfile.addEventListener('click', handleEditProfile);
-// // formProfile.addEventListener('submit', handleSaveProfile);
 buttonAddCard.addEventListener('click', () => {
   formAddCardValidator.resetValidation();
   popupAddCard.open()
