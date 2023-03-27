@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
   constructor(data, templateElement, handleOpenImageViewer) {
     this._name = data.name;
     this._link = data.link;
@@ -20,6 +20,7 @@ export class Card {
     this._card.classList.add('card_removing');
     setTimeout(() => {
       this._card.remove();
+      this._card = null;
     }, 400);
   };
 

@@ -1,0 +1,20 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "* HTML5  \r * CSS3  \r * Java Script  \r * ООП\r * Файловая структура Nested БЭМ\r * Адаптивная верстка с использованием grid и flex",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chertaika/mesto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chertaika/mesto/issues"
+  },
+  "homepage": "https://github.com/chertaika/mesto#readme"
+}

@@ -1,5 +1,6 @@
-import {Card} from './Card.js';
-import {FormValidator} from './FormValidator.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from "../components/Section.js";
 import {
   popups,
   popupProfile,
@@ -53,20 +54,15 @@ const handleImageViewer = (cardPhoto) => {
   openPopup(popupPhotoViewer);
 };
 
-
-const createCard = (cardData) => {
-  const card = new Card(cardData, cardTemplate, handleImageViewer);
-  return card.generateCard();
-};
-
 const renderCard = (cardData) => {
-  const cardElement = createCard(cardData);
-  cardsContainer.prepend(cardElement);
+  const card = new Card(cardData, cardTemplate, handleImageViewer);
+  const cardElement = card.generateCard();
+  cardList.addItem(cardElement);
 };
 
-initialCards.forEach(cardData => {
-  renderCard(cardData);
-});
+const cardList = new Section({items: initialCards, renderer: renderCard}, cardsContainer);
+cardList.renderItems();
+
 
 const formProfileValidator = new FormValidator(validationOptions, formProfile);
 formProfileValidator.enableValidation();
