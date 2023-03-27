@@ -1,6 +1,7 @@
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
-import Section from "../components/Section.js";
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 import {
   popups,
   popupProfile,
@@ -20,42 +21,42 @@ import {
   validationOptions
 } from "./constants.js";
 
-const handleEscClose = (evt) => {
-  if (evt.key === 'Escape') {
-    const currentPopup = document.querySelector('.popup_opened');
-    closePopup(currentPopup);
-  }
-};
+// const handleEscClose = (evt) => {
+//   if (evt.key === 'Escape') {
+//     const currentPopup = document.querySelector('.popup_opened');
+//     closePopup(currentPopup);
+//   }
+// };
+//
+// const openPopup = (popup) => {
+//   popup.classList.add('popup_opened');
+//   document.addEventListener('keydown', handleEscClose);
+// };
+//
+// const closePopup = (popup) => {
+//   popup.classList.remove('popup_opened');
+//   document.removeEventListener('keydown', handleEscClose);
+// };
 
-const openPopup = (popup) => {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', handleEscClose);
-};
+// popups.forEach((popup) => {
+//   popup.addEventListener('mousedown', (evt) => {
+//     if (evt.target === evt.currentTarget) {
+//       closePopup(popup);
+//     } else if (evt.target.classList.contains('popup__close-btn')) {
+//       closePopup(popup);
+//     }
+//   });
+// });
 
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleEscClose);
-};
+const popupWithImage = new PopupWithImage(popupPhotoViewer, popupImage, popupImageTitle);
+popupWithImage.setEventListeners();
 
-popups.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target === evt.currentTarget) {
-      closePopup(popup);
-    } else if (evt.target.classList.contains('popup__close-btn')) {
-      closePopup(popup);
-    }
-  });
-});
-
-const handleImageViewer = (cardPhoto) => {
-  popupImage.src = cardPhoto.src;
-  popupImage.alt = cardPhoto.alt;
-  popupImageTitle.textContent = cardPhoto.alt;
-  openPopup(popupPhotoViewer);
+const handleCardClick = (cardPhoto) => {
+  popupWithImage.open(cardPhoto);
 };
 
 const renderCard = (cardData) => {
-  const card = new Card(cardData, cardTemplate, handleImageViewer);
+  const card = new Card(cardData, cardTemplate, handleCardClick);
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);
 };
