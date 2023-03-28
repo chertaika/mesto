@@ -4,16 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <link href="./pages/index.css" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="./images/favicon.svg">
 </head>
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/header-logo.svg" alt="логотип Место">
+    <img class="header__logo" src="<%=require('./assets/images/header-logo.svg')%>" alt="логотип Место">
   </header>
   <main class="content">
     <section class="profile">
-      <img src="./images/avatar.jpg" class="profile__avatar" alt="фото профиля">
+      <img src="<%=require('./assets/images/avatar.jpg')%>" class="profile__avatar" alt="фото профиля">
       <div class="profile__info">
         <h1 class="profile__name">Фёдор Конюхов</h1>
         <p class="profile__desc">Российский путешественник</p>
@@ -89,9 +87,5 @@
       </div>
     </article>
   </template>
-  <script type="module" src="./scripts/constants.js"></script>
-  <script type="module" src="scripts/components/Card.js"></script>
-  <script type="module" src="scripts/components/FormValidator.js"></script>
-  <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
