@@ -33,39 +33,21 @@ const cards = {};
 const userInfo = new UserInfo(profileInfo);
 const api = new Api(settings);
 
-// api.getUserId()
-//     .then(res => {
-//       return userId = res._id;
-//     })
-//     .catch(error => console.log(`Ошибка: ${error}`));
-//
-// Promise.all([
-//   api.getUserInfo(),
-//   api.getInitialCards()
-// ])
-//   .then(results => {
-//     userInfo.setUserInfo(results[0]);
-//     userInfo.setUserAvatar(results[0]);
-//     renderInitialCards(results[1]);
-//   })
-//   .catch(error => console.log(`Ошибка: ${error}`));
-
-api.getUserInfo()
-  .then(res => {
-    userInfo.setUserInfo(res);
-    userInfo.setUserAvatar(res);
-    return userId = res._id;
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
+  .then(([userData, cards]) => {
+    userId = userData._id;
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
+    renderInitialCards(cards);
   })
-  .catch(error => console.log(`Ошибка: ${error}`));
-
-api.getInitialCards()
-  .then(res => renderInitialCards(res))
   .catch(error => console.log(`Ошибка: ${error}`));
 
 const handleEditProfile = () => {
   const {name, about} = userInfo.getUserInfo()
-  formProfile.elements.name.value = name;
-  formProfile.elements.about.value = about;
+  popupEditProfile.setInputValues({name, about})
   formProfileValidator.resetValidation();
   popupEditProfile.open();
 };
@@ -114,12 +96,6 @@ const handleLikeClick = (cardId, isLiked) => {
     .finally(() => cards[cardId].blockLikeButton(false));
 }
 
-const handleClickDeleteButton = (cardId) => {
-  popupWithDeleteConfirmation.handleSubmit(() => deleteCard(cardId));
-  popupWithDeleteConfirmation.setEventListeners();
-  popupWithDeleteConfirmation.open();
-}
-
 const deleteCard = (cardId) => {
   popupWithDeleteConfirmation.blockButton('Удаление...');
   api.deleteCard(cardId)
@@ -129,6 +105,11 @@ const deleteCard = (cardId) => {
     })
     .catch(error => console.log(`Ошибка: ${error}`))
     .finally(() => popupWithDeleteConfirmation.blockButton('Да', false));
+}
+
+const handleClickDeleteButton = (cardId) => {
+  popupWithDeleteConfirmation.handleSubmit(() => deleteCard(cardId));
+  popupWithDeleteConfirmation.open();
 }
 
 const handleCardClick = (cardPhoto) => {
@@ -151,6 +132,7 @@ const renderInitialCards = (items) => {
 }
 
 const popupWithDeleteConfirmation = new PopupWithConfirmation(popupDeleteConfirmationSelector);
+popupWithDeleteConfirmation.setEventListeners();
 
 const popupWithImage = new PopupWithImage(popupPhotoViewerSelector);
 popupWithImage.setEventListeners();
