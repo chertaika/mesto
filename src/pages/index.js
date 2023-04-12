@@ -31,18 +31,14 @@ let userId;
 const cards = {};
 
 const userInfo = new UserInfo(profileInfo);
-
-const handleEditProfile = () => {
-  const {name, about} = userInfo.getUserInfo()
-  formProfile.elements.name.value = name;
-  formProfile.elements.about.value = about;
-  formProfileValidator.resetValidation();
-  popupEditProfile.open();
-};
-
-
 const api = new Api(settings);
 
+// api.getUserId()
+//     .then(res => {
+//       return userId = res._id;
+//     })
+//     .catch(error => console.log(`Ошибка: ${error}`));
+//
 // Promise.all([
 //   api.getUserInfo(),
 //   api.getInitialCards()
@@ -51,7 +47,6 @@ const api = new Api(settings);
 //     userInfo.setUserInfo(results[0]);
 //     userInfo.setUserAvatar(results[0]);
 //     renderInitialCards(results[1]);
-//     return userId = results[0]._id;
 //   })
 //   .catch(error => console.log(`Ошибка: ${error}`));
 
@@ -66,6 +61,14 @@ api.getUserInfo()
 api.getInitialCards()
   .then(res => renderInitialCards(res))
   .catch(error => console.log(`Ошибка: ${error}`));
+
+const handleEditProfile = () => {
+  const {name, about} = userInfo.getUserInfo()
+  formProfile.elements.name.value = name;
+  formProfile.elements.about.value = about;
+  formProfileValidator.resetValidation();
+  popupEditProfile.open();
+};
 
 const handleAddCard = (data) => {
   popupAddCard.blockButton('Создание...');
@@ -104,7 +107,9 @@ const handleSaveAvatar = (data) => {
 const handleLikeClick = (cardId, isLiked) => {
   cards[cardId].blockLikeButton();
   api.handleLike(cardId, isLiked)
-    .then(res => cards[cardId].checkLike(res.likes))
+    .then(res => {
+      cards[cardId].checkLike(res.likes)
+    })
     .catch(error => console.log(`Ошибка: ${error}`))
     .finally(() => cards[cardId].blockLikeButton(false));
 }
