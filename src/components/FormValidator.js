@@ -13,14 +13,14 @@ export default class FormValidator {
     inputElement.classList.add(this._inputErrorClass);
     errorElement.classList.add(this._errorClass);
     errorElement.textContent = inputElement.validationMessage;
-  };
+  }
 
   _hideInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
-  };
+  }
 
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
@@ -28,23 +28,31 @@ export default class FormValidator {
     } else {
       this._hideInputError(inputElement);
     }
-  };
+  }
 
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
-  };
+  }
+
+  _disabledButton() {
+    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._submitButton.setAttribute('disabled', true);
+  }
+
+  _enabledButton() {
+    this._submitButton.classList.remove(this._inactiveButtonClass);
+    this._submitButton.removeAttribute('disabled');
+  }
 
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
-      this._submitButton.classList.add(this._inactiveButtonClass);
-      this._submitButton.setAttribute('disabled', true);
+      this._disabledButton();
     } else {
-      this._submitButton.classList.remove(this._inactiveButtonClass);
-      this._submitButton.removeAttribute('disabled');
+      this._enabledButton();
     }
-  };
+  }
 
   _setEventListeners() {
     this._inputList.forEach((inputElement) => {
@@ -53,19 +61,19 @@ export default class FormValidator {
         this._toggleButtonState();
       });
     });
-  };
+  }
 
   resetValidation() {
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
-  };
+  }
 
   enableValidation() {
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
-    })
+    });
     this._setEventListeners();
-  };
+  }
 }

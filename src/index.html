@@ -11,7 +11,10 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img src="<%=require('./assets/images/avatar.jpg')%>" class="profile__avatar" alt="фото профиля">
+      <div class="profile__avatar-container">
+        <img src="<%=require('./assets/images/avatar.jpg')%>" class="profile__avatar" alt="фото профиля">
+        <div class="profile__avatar-edit"></div>
+      </div>
       <div class="profile__info">
         <h1 class="profile__name">Фёдор Конюхов</h1>
         <p class="profile__desc">Российский путешественник</p>
@@ -25,6 +28,8 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
   </footer>
+
+<!--  попап редактирования профиля-->
   <div class="popup popup_type_profile">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
@@ -36,17 +41,19 @@
         </label>
         <label class="popup__field">
           <input type="text" placeholder="О себе" id="desc-input" minlength="2" maxlength="200"
-                 class="popup__input popup__input_type_desc" name="description" autocomplete="off" required>
+                 class="popup__input popup__input_type_desc" name="about" autocomplete="off" required>
           <span class="popup__input-error desc-input-error"></span>
         </label>
         <button class="popup__submit-btn" type="submit">
           Сохранить
         </button>
       </form>
-      <button class="popup__close-btn btn-hover popup__close-btn_type_profile" type="button"
+      <button class="popup__close-btn btn-hover" type="button"
               aria-label="Закрыть всплывающее окно"></button>
     </div>
   </div>
+
+<!--  попап добавления карточки-->
   <div class="popup popup_type_adding-card">
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
@@ -65,25 +72,64 @@
           Создать
         </button>
       </form>
-      <button class="popup__close-btn btn-hover popup__close-btn_type_adding-card" type="button"
+      <button class="popup__close-btn btn-hover" type="button"
               aria-label="Закрыть всплывающее окно"></button>
     </div>
   </div>
+
+<!--  попап с увеличенной картинкой-->
   <div class="popup popup_type_photo-viewer">
     <div class="popup__content">
-      <button class="popup__close-btn btn-hover popup__close-btn_type_photo-viewer" type="button"
+      <button class="popup__close-btn btn-hover" type="button"
               aria-label="Закрыть всплывающее окно"></button>
       <img class="popup__image" alt="Имя картинки на языке страницы">
       <h2 class="popup__image-title"></h2>
     </div>
   </div>
+
+<!--  попап редактирования аватара-->
+  <div class="popup popup_type_edit-avatar">
+    <div class="popup__container">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form popup__form_avatar" name="edit-avatar" novalidate>
+        <label class="popup__field">
+          <input type="url" placeholder="Ссылка на картинку" id="avatar-input" class="popup__input popup__input_type_avatar" name="avatar" autocomplete="off" required>
+          <span class="popup__input-error avatar-input-error"></span>
+        </label>
+        <button class="popup__submit-btn" type="submit">
+          Сохранить
+        </button>
+      </form>
+      <button class="popup__close-btn btn-hover" type="button"
+              aria-label="Закрыть всплывающее окно"></button>
+    </div>
+  </div>
+
+<!--  попап подтверждения удаления карточки-->
+  <div class="popup popup_type_delete-card">
+    <div class="popup__container">
+      <h2 class="popup__title popup__title_delete-card">Вы уверены?</h2>
+      <form class="popup__form popup__form_delete-card" name="delete-card">
+        <button class="popup__submit-btn popup__submit-btn_delete-card" type="submit">
+          Да
+        </button>
+      </form>
+      <button class="popup__close-btn btn-hover" type="button"
+              aria-label="Закрыть всплывающее окно"></button>
+    </div>
+  </div>
+
+
   <template id="card">
     <article class="card">
       <img class="card__photo" alt="Имя картинки на языке страницы">
       <button class="card__delete-btn btn-hover" type="button" aria-label="Удалить карточку"></button>
       <div class="card__desc">
         <h2 class="card__title"></h2>
-        <button class="card__like" type="button" aria-label="Поставить лайк"></button>
+        <div class="card__like">
+          <button class="card__like-button" type="button" aria-label="Поставить лайк"></button>
+          <span class="card__like-counter">0</span>
+        </div>
       </div>
     </article>
   </template>
