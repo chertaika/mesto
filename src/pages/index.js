@@ -43,6 +43,18 @@ const handleEditProfile = () => {
 
 const api = new Api(settings);
 
+// Promise.all([
+//   api.getUserInfo(),
+//   api.getInitialCards()
+// ])
+//   .then(results => {
+//     userInfo.setUserInfo(results[0]);
+//     userInfo.setUserAvatar(results[0]);
+//     renderInitialCards(results[1]);
+//     return userId = results[0]._id;
+//   })
+//   .catch(error => console.log(`Ошибка: ${error}`));
+
 api.getUserInfo()
   .then(res => {
     userInfo.setUserInfo(res);
