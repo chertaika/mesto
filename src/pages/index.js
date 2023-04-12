@@ -8,22 +8,22 @@ import UserInfo from '../components/UserInfo.js';
 import Api from "../components/Api.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import {
-  popupProfileSelector,
-  popupAddingCardSelector,
-  popupPhotoViewerSelector,
-  buttonEditProfile,
   buttonAddCard,
-  formProfile,
+  buttonEditProfile,
   cardsContainerSelector,
-  formAddCard,
   cardTemplate,
-  validationOptions,
+  formAddCard,
+  formEditAvatar,
+  formProfile,
+  popupAddingCardSelector,
+  popupDeleteConfirmationSelector,
+  popupEditAvatarSelector,
+  popupPhotoViewerSelector,
+  popupProfileSelector,
+  profileAvatarEdit,
   profileInfo,
   settings,
-  profileAvatarEdit,
-  popupEditAvatarSelector,
-  formEditAvatar,
-  popupDeleteConfirmationSelector
+  validationOptions
 } from '../utils/constants.js';
 
 let cardList;
@@ -66,26 +66,26 @@ const handleAddCard = (data) => {
 };
 
 const handleSaveProfile = (data) => {
-  popupEditProfile.blockButton( 'Сохранение...');
+  popupEditProfile.blockButton('Сохранение...');
   api.editUserInfo(data)
     .then(res => {
       userInfo.setUserInfo(res);
       popupEditProfile.close();
     })
     .catch(error => console.log(`Ошибка: ${error}`))
-    .finally(() => popupEditProfile.blockButton( 'Сохранить', false));
+    .finally(() => popupEditProfile.blockButton('Сохранить', false));
 
 };
 
 const handleSaveAvatar = (data) => {
-  popupEditAvatar.blockButton( 'Сохранение...');
+  popupEditAvatar.blockButton('Сохранение...');
   api.editUserAvatar(data)
     .then(res => {
       userInfo.setUserAvatar(res);
       popupEditAvatar.close();
     })
     .catch(error => console.log(`Ошибка: ${error}`))
-    .finally(() => popupEditAvatar.blockButton( 'Сохранить', false));
+    .finally(() => popupEditAvatar.blockButton('Сохранить', false));
 };
 
 const handleLikeClick = (cardId, isLiked) => {
@@ -105,12 +105,12 @@ const handleClickDeleteButton = (cardId) => {
 const deleteCard = (cardId) => {
   popupWithDeleteConfirmation.blockButton('Удаление...');
   api.deleteCard(cardId)
-    .then(()=> {
+    .then(() => {
       cards[cardId].handleDeleteCard()
       popupWithDeleteConfirmation.close()
     })
     .catch(error => console.log(`Ошибка: ${error}`))
-    .finally(() => popupWithDeleteConfirmation.blockButton('Да',false));
+    .finally(() => popupWithDeleteConfirmation.blockButton('Да', false));
 }
 
 const handleCardClick = (cardPhoto) => {
@@ -125,7 +125,10 @@ const renderCard = (cardData, isStart) => {
 };
 
 const renderInitialCards = (items) => {
-  cardList = new Section({items: items, renderer: renderCard}, cardsContainerSelector);
+  cardList = new Section({
+    items: items,
+    renderer: renderCard
+  }, cardsContainerSelector);
   cardList.renderItems();
 }
 

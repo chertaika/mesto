@@ -4,6 +4,8 @@
   color: rgba(0, 0, 0, .2);
 }
 
-.popup__submit-btn_disabled:hover {
-  cursor: auto;
+@media (hover: hover) {
+  .popup__submit-btn_disabled:hover {
+    cursor: auto;
+  }
 }

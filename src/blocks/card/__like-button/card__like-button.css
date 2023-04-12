@@ -9,8 +9,11 @@
   padding: 0;
   transition: opacity .25s, background .25s;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.card__like-button:hover {
-  opacity: .5;
+@media (hover: hover) {
+  .card__like-button:hover {
+    opacity: .5;
+  }
 }
