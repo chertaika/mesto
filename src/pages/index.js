@@ -40,18 +40,19 @@ const handleEditProfile = () => {
   popupEditProfile.open();
 };
 
-
 const api = new Api(settings);
 
-api.getUserInfo()
-  .then(res => {
-    userInfo.setUserInfo(res);
-    return userId = res._id;
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
+  .then(results => {
+    console.log(results)
+    userInfo.setUserInfo(results[0]);
+    userInfo.setUserAvatar(results[0]);
+    renderInitialCards(results[1]);
+    return userId = results[0]._id;
   })
-  .catch(error => console.log(`Ошибка: ${error}`));
-
-api.getInitialCards()
-  .then(res => renderInitialCards(res))
   .catch(error => console.log(`Ошибка: ${error}`));
 
 const handleAddCard = (data) => {
