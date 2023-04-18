@@ -20,7 +20,7 @@ export default class Card {
   }
 
   _handleLikeCard() {
-    this._handleLikeClick(this._cardId, this._isLiked, this._buttonLike);
+    this._handleLikeClick(this._cardId, this._isLiked);
   }
 
   _checkUserLike() {
