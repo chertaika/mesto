@@ -20,7 +20,7 @@ export default class Card {
   }
 
   _handleLikeCard() {
-    this._handleLikeClick(this._cardId, this._isLiked);
+    this._handleLikeClick(this._cardId, this._isLiked, this);
   }
 
   _checkUserLike() {
@@ -35,6 +35,7 @@ export default class Card {
     }
   }
 
+  //
   checkLike(likes) {
     if(likes) {
       this._likes = likes;
@@ -65,9 +66,15 @@ export default class Card {
     });
     if(this._isOwner) {
       this._buttonDelete.addEventListener('click', () => {
-        this._handleDeleteClick(this._cardId);
+        this._handleDeleteClick(this._cardId, this);
       });
     }
+  }
+
+  _fillCard() {
+    this._cardPhoto.src = this._link;
+    this._cardPhoto.alt = this._name;
+    this._cardTitle.textContent = this._name;
   }
 
   generateCard() {
@@ -82,9 +89,7 @@ export default class Card {
     }
     this.checkLike();
     this._setEventListeners();
-    this._cardPhoto.src = this._link;
-    this._cardPhoto.alt = this._name;
-    this._cardTitle.textContent = this._name;
+    this._fillCard();
 
     return this._card;
   }

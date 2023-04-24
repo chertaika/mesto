@@ -26,32 +26,20 @@ import {
   validationOptions
 } from '../utils/constants.js';
 
-let cardList;
 let userId;
-const cards = {};
 
 const userInfo = new UserInfo(profileInfo);
 const api = new Api(settings);
 
-Promise.all([
-  api.getUserInfo(),
-  api.getInitialCards()
-])
-  .then(([userData, cards]) => {
-    userId = userData._id;
-    userInfo.setUserInfo(userData);
-    userInfo.setUserAvatar(userData);
-    renderInitialCards(cards);
-  })
-  .catch(error => console.log(`Ошибка: ${error}`));
-
+//открытие попапа для редактирования профиля
 const handleEditProfile = () => {
-  const {name, about} = userInfo.getUserInfo()
-  popupEditProfile.setInputValues({name, about})
+  const {name, about} = userInfo.getUserInfo();
+  popupEditProfile.setInputValues({name, about});
   formProfileValidator.resetValidation();
   popupEditProfile.open();
 };
 
+//запрос на добавление новой карточки
 const handleAddCard = (data) => {
   popupAddCard.blockButton('Создание...');
   api.addNewCard(data)
@@ -63,6 +51,7 @@ const handleAddCard = (data) => {
     .finally(() => popupAddCard.blockButton('Создать', false));
 };
 
+//запрос на сохранение изменений профиля
 const handleSaveProfile = (data) => {
   popupEditProfile.blockButton('Сохранение...');
   api.editUserInfo(data)
@@ -75,6 +64,7 @@ const handleSaveProfile = (data) => {
 
 };
 
+//запрос на сохранение изменений аватара
 const handleSaveAvatar = (data) => {
   popupEditAvatar.blockButton('Сохранение...');
   api.editUserAvatar(data)
@@ -86,50 +76,48 @@ const handleSaveAvatar = (data) => {
     .finally(() => popupEditAvatar.blockButton('Сохранить', false));
 };
 
-const handleLikeClick = (cardId, isLiked) => {
-  cards[cardId].blockLikeButton();
+//запрос на обработку лайка карточки
+const handleLikeClick = (cardId, isLiked, card) => {
+  card.blockLikeButton();
   api.handleLike(cardId, isLiked)
     .then(res => {
-      cards[cardId].checkLike(res.likes)
+      card.checkLike(res.likes);
     })
     .catch(error => console.log(`Ошибка: ${error}`))
-    .finally(() => cards[cardId].blockLikeButton(false));
-}
+    .finally(() => card.blockLikeButton(false));
+};
 
-const deleteCard = (cardId) => {
+//запрос на удаление карточки
+const deleteCard = (cardId, card) => {
   popupWithDeleteConfirmation.blockButton('Удаление...');
   api.deleteCard(cardId)
     .then(() => {
-      cards[cardId].handleDeleteCard()
-      popupWithDeleteConfirmation.close()
+      card.handleDeleteCard();
+      popupWithDeleteConfirmation.close();
     })
     .catch(error => console.log(`Ошибка: ${error}`))
     .finally(() => popupWithDeleteConfirmation.blockButton('Да', false));
-}
+};
 
-const handleClickDeleteButton = (cardId) => {
-  popupWithDeleteConfirmation.handleSubmit(() => deleteCard(cardId));
+//открытие попапа для подтверждения удаления карточки
+const handleClickDeleteButton = (cardId, card) => {
+  popupWithDeleteConfirmation.handleSubmit(() => deleteCard(cardId, card));
   popupWithDeleteConfirmation.open();
-}
+};
 
+//открытие попапа с увеличенной картинкой
 const handleCardClick = (cardPhoto) => {
   popupWithImage.open(cardPhoto);
 };
 
+//отрисовка и добавление новой карточки
 const renderCard = (cardData, isStart) => {
   const card = new Card(cardData, cardTemplate, handleCardClick, handleLikeClick, handleClickDeleteButton, userId);
-  cards[cardData._id] = card;
   const cardElement = card.generateCard();
   cardList.addItem(cardElement, isStart);
 };
 
-const renderInitialCards = (items) => {
-  cardList = new Section({
-    items: items,
-    renderer: renderCard
-  }, cardsContainerSelector);
-  cardList.renderItems();
-}
+const cardList = new Section(renderCard, cardsContainerSelector);
 
 const popupWithDeleteConfirmation = new PopupWithConfirmation(popupDeleteConfirmationSelector);
 popupWithDeleteConfirmation.setEventListeners();
@@ -155,12 +143,25 @@ formAddCardValidator.enableValidation();
 const formEditAvatarValidator = new FormValidator(validationOptions, formEditAvatar);
 formEditAvatarValidator.enableValidation();
 
+// отрисовка профиля пользователя и карточек с сервера при загрузке страницы
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
+  .then(([userData, cards]) => {
+    userId = userData._id;
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
+    cardList.renderItems(cards);
+  })
+  .catch(error => console.log(`Ошибка: ${error}`));
+
 profileAvatarEdit.addEventListener('click', () => {
   formEditAvatarValidator.resetValidation();
   popupEditAvatar.open();
-})
+});
 buttonEditProfile.addEventListener('click', handleEditProfile);
 buttonAddCard.addEventListener('click', () => {
   formAddCardValidator.resetValidation();
-  popupAddCard.open()
+  popupAddCard.open();
 });
