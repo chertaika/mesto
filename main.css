@@ -48,4 +48,4 @@
 .popup_type_photo-viewer{background-color:rgba(0,0,0,.9)}
 .popup__image{color:#fff;font-size:18px;font-weight:400;line-height:22px;max-height:75vh;max-width:75vw}
 .popup__image-title{bottom:-25px;color:#fff;font-size:12px;font-weight:400;left:0;line-height:15px;margin:0;position:absolute}
-
+.card__photo-preloader{aspect-ratio:1/1;background-color:#000;background-image:url(images/load.5b8de5ae9c6d3e6b5c00.svg);background-position:50%;background-repeat:no-repeat;background-size:50px;position:absolute;width:100%}.preloader-hidden{display:none}
