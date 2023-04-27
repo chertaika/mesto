@@ -19,7 +19,7 @@
 .elements{display:grid;gap:20px 17px;grid-template-columns:repeat(auto-fill,minmax(282px,1fr));max-width:880px}
 .card{position:relative;transform:scale(1);transform-origin:center center;transition:all .6s ease}
 .card_removing{opacity:0;transform:scale(0)}
-.card__photo-preloader{aspect-ratio:1/1;background-size:50px;width:100%}
+.card__photo-preloader{aspect-ratio:1/1;background-size:50px;width:100%}.card__photo-preloader_error{background-image:url(images/no-photo.89dbb0dc5380d4e3b9a8.svg)}
 .card__photo{-webkit-tap-highlight-color:transparent;aspect-ratio:1/1;border-radius:10px 10px 0 0;color:#fff;cursor:pointer;display:block;font-size:18px;font-weight:400;line-height:22px;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;width:100%}
 .card__delete-btn{background-color:transparent;background-image:url(images/delete-button.823b0cf1b0b7e9cb7cad.svg);background-position:50%;background-repeat:no-repeat;border:none;cursor:pointer;height:19px;padding:0;position:absolute;right:20px;top:20px;width:18px}
 .card__desc{align-items:center;background-color:#fff;border-radius:0 0 10px 10px;display:flex;justify-content:space-between;padding:22px 20px 19px 21px}
