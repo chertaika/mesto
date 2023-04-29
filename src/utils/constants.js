@@ -11,6 +11,7 @@ export const popupProfileSelector = '.popup_type_profile',
       formEditAvatar = document.querySelector('.popup__form_avatar'),
       cardTemplate = document.querySelector('#card').content,
       profileAvatarEdit = document.querySelector('.profile__avatar-edit'),
+      loading = document.querySelector('.preloader'),
       validationOptions = {
         inputSelector: '.popup__input',
         submitButtonSelector: '.popup__submit-btn',

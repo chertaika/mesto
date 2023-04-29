@@ -1,0 +1,5 @@
+.preloader_hidden {
+  transition: opacity .4s, visibility .4s;
+  opacity: 0;
+  visibility: hidden;
+}

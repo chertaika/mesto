@@ -1,0 +1,9 @@
+.card__photo-preloader {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-size: 50px;
+}
+
+.card__photo-preloader_error {
+  background-image: url("../../../assets/images/no-photo.svg");
+}

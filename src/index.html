@@ -6,6 +6,7 @@
   <title>Место</title>
 </head>
 <body class="page">
+  <div class="preloader"></div>
   <header class="header">
     <img class="header__logo" src="<%=require('./assets/images/header-logo.svg')%>" alt="логотип Место">
   </header>
@@ -122,6 +123,7 @@
 <!--шаблон карточки-->
   <template id="card">
     <article class="card">
+      <span class="card__photo-preloader preloader"></span>
       <img class="card__photo" alt="Имя картинки на языке страницы">
       <button class="card__delete-btn btn-hover" type="button" aria-label="Удалить карточку"></button>
       <div class="card__desc">

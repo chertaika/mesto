@@ -15,6 +15,7 @@ import {
   formAddCard,
   formEditAvatar,
   formProfile,
+  loading,
   popupAddingCardSelector,
   popupDeleteConfirmationSelector,
   popupEditAvatarSelector,
@@ -120,7 +121,9 @@ const renderCard = (cardData, isStart) => {
 const cardList = new Section(renderCard, cardsContainerSelector);
 
 const popupWithDeleteConfirmation = new PopupWithConfirmation(popupDeleteConfirmationSelector);
-popupWithDeleteConfirmation.setEventListeners();
+popupWithDeleteConfirmation.setEventListeners()
+
+console.log(popupWithDeleteConfirmation)
 
 const popupWithImage = new PopupWithImage(popupPhotoViewerSelector);
 popupWithImage.setEventListeners();
@@ -133,6 +136,8 @@ popupEditProfile.setEventListeners();
 
 const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector, handleSaveAvatar);
 popupEditAvatar.setEventListeners();
+
+console.log(popupEditProfile);
 
 const formProfileValidator = new FormValidator(validationOptions, formProfile);
 formProfileValidator.enableValidation();
@@ -153,6 +158,9 @@ Promise.all([
     userInfo.setUserInfo(userData);
     userInfo.setUserAvatar(userData);
     cardList.renderItems(cards);
+  })
+  .then(() => {
+    loading.classList.add('preloader_hidden');
   })
   .catch(error => console.log(`Ошибка: ${error}`));
 

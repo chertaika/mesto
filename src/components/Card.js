@@ -71,8 +71,23 @@ export default class Card {
     }
   }
 
+  loadImage() {
+    return new Promise((resolve, reject) => {
+      this._cardPhoto.src = this._link;
+      this._cardPhoto.onerror = reject;
+      this._cardPhoto.onload = resolve;
+    });
+  }
+
   _fillCard() {
-    this._cardPhoto.src = this._link;
+    this.loadImage()
+      .then(() => {
+        this._photoPreloader.classList.add('preloader_hidden');
+      })
+      .catch((error) => {
+        this._photoPreloader.classList.add('card__photo-preloader_error');
+        console.log(`Ошибка: ${error}`);
+      });
     this._cardPhoto.alt = this._name;
     this._cardTitle.textContent = this._name;
   }
@@ -81,6 +96,7 @@ export default class Card {
     this._card = this._getTemplate();
     this._cardTitle = this._card.querySelector('.card__title');
     this._cardPhoto = this._card.querySelector('.card__photo');
+    this._photoPreloader = this._card.querySelector('.card__photo-preloader');
     this._buttonLike = this._card.querySelector('.card__like-button');
     this._likeCounter = this._card.querySelector('.card__like-counter');
     this._buttonDelete = this._card.querySelector('.card__delete-btn');
